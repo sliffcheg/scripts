@@ -1,0 +1,1 @@
+gci E:\folder -Recurse | get-filehash -Algorithm MD5 | Group-Object hash | ?{$_.count -gt 1}  | select @{n='DupeCount';e={$_.Count}}, @{n='DupeFiles';e={$_.Group.Path -join [System.Environment]::NewLine}} | Out-GridView
